@@ -49,4 +49,39 @@ namespace WindowsFormsApp_10_Class_Override
             Console.WriteLine("아메리카노를 준비하고 있습니다.");
         }
     }
+
+    //3. 라떼 클래스
+    public class Latte : Beverage
+    {
+        //sealed: override를 더 이상 못하게 막음
+        //ㄴ 여기까지만 재정의(override) 가능
+        //ㄴ 하위 자식들은 이 메서드를 바꾸지 못하게 막음
+
+        public sealed override void Prepare()
+        {
+            Console.WriteLine("라떼를 준비하고 있습니다.");
+        }
+    }
+
+    //4. 콜드브루 클래스
+    //ㄴ sealed를 상속받는 자식 클래스
+    //ㄴ override 불가
+    public class ColdBrew : Latte
+    {
+        //sealed 때문에 override가 불가
+        //public override void Prepare()
+        //{
+        //    Console.WriteLine("콜드브루를 준비하고 있습니다.");
+        //}
+    }
+
+    //5. 모든 메뉴가 Beverage만 상속하는 구조라면
+    public class ColdBrew2 : Beverage
+    {
+        //Latte 클래스를 상속받은것이 아닌 Beverage 클래스를 상속받아 sealed의 영향을 받지 않아 override 가능
+        public override void Prepare()
+        {
+            Console.WriteLine("콜드브루를 준비하고 있습니다.");
+        }
+    }
 }
